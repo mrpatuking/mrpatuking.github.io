@@ -157,11 +157,11 @@ async function loadChannelStats() {
     const stats = data.items[0].statistics;
 
     document.getElementById("subs").innerText =
-        Number(stats.subscriberCount).toLocaleString();
+    (Number(stats.subscriberCount) / 1000).toFixed(1) + "K";
 
     document.getElementById("views").innerText =
-        Number(stats.viewCount).toLocaleString();
-
+    (Number(stats.viewCount) / 1000000).toFixed(1) + "M";
+    
     document.getElementById("videos-count").innerText =
         Number(stats.videoCount).toLocaleString();
 
