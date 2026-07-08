@@ -461,14 +461,16 @@ opacity:0;
 }
 
 .short-card{
-    border-radius:20px;
+    aspect-ratio:9/16;
     overflow:hidden;
-    transition:.3s;
+    border-radius:20px;
+    background:#000;
 }
 
 .short-card img{
     width:100%;
-    display:block;
+    height:100%;
+    object-fit:cover;
     border-radius:20px;
 }
 
@@ -1097,4 +1099,10 @@ background-position:-100% 0;
 }
 
 }
+@media (max-width: 768px) {
 
+    .scroll-down {
+        bottom: -45px;
+    }
+
+}
