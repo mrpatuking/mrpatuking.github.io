@@ -816,58 +816,220 @@ transform:translateY(-5px);
 #loader{
 
 position:fixed;
-
 top:0;
-
 left:0;
 
 width:100%;
-
 height:100vh;
 
 background:#050816;
 
 display:flex;
-
 justify-content:center;
-
 align-items:center;
 
 z-index:99999;
 
-transition:opacity .8s ease, visibility .8s;
+transition:opacity .5s ease, visibility .5s;
+
+overflow:hidden;
+
+}
+
+#loader::before{
+
+content:"";
+
+position:absolute;
+
+width:600px;
+height:600px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(244,196,48,.08),
+transparent 70%);
+
+animation:bgGlow 5s ease-in-out infinite;
+
+}
+
+.loader-wrapper{
+
+position:relative;
+
+width:240px;
+height:240px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+animation:loaderFloat 3s ease-in-out infinite;
 
 }
 
 .loader-logo{
 
-text-align:center;
+position:relative;
+
+width:240px;
+height:240px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+margin:auto;
 
 }
+
+/* Logo */
 
 .loader-logo img{
 
-width:100px;
+width:140px;
 
-height:100px;
+height:140px;
 
-border-radius:20px;
+aspect-ratio:1/1;
 
-animation:spin 2s linear infinite;
+object-fit:cover;
+
+border-radius:50%;
+
+border:4px solid #f4c430;
+
+background:#111;
+
+box-shadow:
+0 0 20px rgba(244,196,48,.4),
+0 0 45px rgba(244,196,48,.25);
+
+position:absolute;
+
+z-index:5;
+
+animation:logoGlow 2.5s ease-in-out infinite;
 
 }
 
+@keyframes logoGlow{
+
+0%,100%{
+
+box-shadow:
+0 0 20px rgba(244,196,48,.35),
+0 0 40px rgba(244,196,48,.25);
+
+}
+
+50%{
+
+box-shadow:
+0 0 35px rgba(244,196,48,.8),
+0 0 70px rgba(244,196,48,.45);
+
+}
+
+}
+
+/* Name */
+
 .loader-logo h2{
 
-margin-top:20px;
+position:absolute;
+
+bottom:-65px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:max-content;
 
 font-size:32px;
+
+font-weight:700;
 
 letter-spacing:2px;
 
 color:#f4c430;
 
+white-space:nowrap;
+
+bottom:-35px;
+
 }
+
+/* Orbit */
+
+.orbit{
+
+position:absolute;
+
+width:185px;
+height:185px;
+
+border-radius:50%;
+
+animation:orbit 2.2s linear infinite;
+}
+
+/* Airplane */
+
+.airplane{
+
+position:absolute;
+
+top:-12px;
+left:50%;
+
+transform:translateX(-50%)(rotate(270deg));
+
+font-size:26px;
+
+color:#f4c430;
+
+z-index:100;
+
+filter:none;
+
+}
+
+.airplane::after{
+
+content:"";
+
+position:absolute;
+
+top:50%;
+
+left:28px;
+
+transform:translateY(-50%);
+
+width:42px;
+
+height:6px;
+
+border-radius:20px;
+
+background:linear-gradient(
+90deg,
+rgba(255,230,150,.9),
+rgba(255,210,70,.45),
+transparent
+);
+
+filter:blur(4px);
+
+animation:jetTrail .8s ease-in-out infinite alternate;
+
+}
+
+/* Hide Loader */
 
 .loader-hide{
 
@@ -877,15 +1039,55 @@ visibility:hidden;
 
 }
 
-@keyframes spin{
+/* Orbit Animation */
+
+@keyframes smokeTrail{
 
 0%{
+
+opacity:.3;
+
+transform:translateY(-50%) scale(.8);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:translateY(-50%) scale(1.2);
+
+}
+
+}
+
+@keyframes smokePulse{
+
+0%{
+
+width:40px;
+opacity:.4;
+
+}
+
+100%{
+
+width:70px;
+opacity:1;
+
+}
+
+}
+
+@keyframes orbit{
+
+from{
 
 transform:rotate(0deg);
 
 }
 
-100%{
+to{
 
 transform:rotate(360deg);
 
@@ -1104,5 +1306,182 @@ background-position:-100% 0;
     .scroll-down {
         bottom: -45px;
     }
+
+}
+#loader::before{
+
+content:"";
+
+position:absolute;
+
+width:600px;
+height:600px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(244,196,48,.08),
+transparent 70%);
+
+animation:bgGlow 5s ease-in-out infinite;
+
+}
+@keyframes bgGlow{
+
+0%,100%{
+
+transform:scale(.9);
+
+opacity:.5;
+
+}
+
+50%{
+
+transform:scale(1.1);
+
+opacity:1;
+
+}
+
+}
+@keyframes loaderFloat{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+}
+.stars span{
+
+position:absolute;
+
+width:3px;
+height:3px;
+
+background:#fff;
+
+border-radius:50%;
+
+animation:twinkle 2s infinite alternate;
+
+}
+
+.stars span:nth-child(1){top:20%;left:25%;}
+.stars span:nth-child(2){top:35%;left:70%;}
+.stars span:nth-child(3){top:70%;left:30%;}
+.stars span:nth-child(4){top:60%;left:80%;}
+.stars span:nth-child(5){top:15%;left:55%;}
+.stars span:nth-child(6){top:80%;left:60%;}
+
+@keyframes twinkle{
+
+0%{
+
+opacity:.2;
+
+transform:scale(.6);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:scale(1.4);
+
+}
+
+}
+/* =========================
+   Floating Dust Particles
+========================= */
+
+.particles{
+
+position:absolute;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+}
+
+.particles span{
+
+position:absolute;
+
+width:4px;
+
+height:4px;
+
+border-radius:50%;
+
+background:rgba(255,210,70,.8);
+
+box-shadow:0 0 10px #f4c430;
+
+animation:floatParticle 5s linear infinite;
+
+}
+
+.particles span:nth-child(1){top:35%;left:38%;animation-delay:0s;}
+.particles span:nth-child(2){top:48%;left:65%;animation-delay:1s;}
+.particles span:nth-child(3){top:60%;left:45%;animation-delay:2s;}
+.particles span:nth-child(4){top:28%;left:58%;animation-delay:3s;}
+.particles span:nth-child(5){top:72%;left:52%;animation-delay:4s;}
+
+@keyframes floatParticle{
+
+0%{
+
+transform:translateY(0) scale(.6);
+
+opacity:0;
+
+}
+
+50%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-30px) scale(1.4);
+
+opacity:0;
+
+}
+
+}
+@keyframes jetTrail{
+
+0%{
+
+width:26px;
+
+opacity:.35;
+
+}
+
+100%{
+
+width:46px;
+
+opacity:1;
+
+}
 
 }
